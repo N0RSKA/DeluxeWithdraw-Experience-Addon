@@ -11,14 +11,20 @@ public class ConfigHandler {
 	
 	@Getter private CommentedConfiguration configFile;
 	
-	public void generateFiles(EXPAddon main) {
-		File file = new File(main.getDataFolder(), "config.yml");
+	private File path = null;
+	
+	public void generateFiles(EXPAddon main) throws IOException {
+		
+		if(path == null) path = new File("plugins/DeluxeWithdraw/addons");
+		if(!path.exists()) path.mkdirs();
+		
+		File file = new File(path, "addon-exp.yml");
 
-        if(!file.exists()) main.saveResource("config.yml", false);
+        if(!file.exists()) file.createNewFile();
 
         configFile = CommentedConfiguration.loadConfiguration(file);
         try {
-			configFile.syncWithConfig(file, main.getResource("config.yml"), "no");
+			configFile.syncWithConfig(file, main.getResource("addon-exp.yml"), "no");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

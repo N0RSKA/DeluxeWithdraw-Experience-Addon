@@ -1,5 +1,6 @@
 package dev.norska.dwaddon.exp.addon;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.bukkit.entity.Player;
@@ -89,6 +90,12 @@ public class EXPInterface implements DWAddonInterface {
 	@Override
 	public List<String> withdrawCommands() {
 		return EXPAddon.getInstance().getNHandler().getCacheHandler().getCommands();
+	}
+
+	@Override
+	public void reloadConfiguration() {
+		EXPAddon.getInstance().generateFiles();
+		EXPAddon.getInstance().cache();
 	}
 
 }
