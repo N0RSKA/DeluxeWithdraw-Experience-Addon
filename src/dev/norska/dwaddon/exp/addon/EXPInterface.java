@@ -98,4 +98,9 @@ public class EXPInterface implements DWAddonInterface {
 		EXPAddon.getInstance().cache();
 	}
 
+	@Override
+	public Boolean useInt() {
+		return true;
+	}
+
 }
